@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <link href='http://fonts.googleapis.com/css?family=Mr+Dafoe' rel='stylesheet' type='text/css'>
+
+  <div id="temp" class="shadow">Hello !</div>
+
+<script>
+var xmlhttp = new XMLHttpRequest();
+var url = "http://localhost:3000";
+
+xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var response = JSON.parse(this.responseText);
+            document.getElementById("temp").innerHTML = "Temp : "+response["temp"]+"°C";
+    }
+};
+
+var intervalID = window.setInterval(getTemperature, 500);
+
+function getTemperature(){
+  xmlhttp.open("GET", url, true);
+  xmlhttp.send();
+}
+
+
+</script>
+
+
+<style>
+body{
+ background-image:url('http://goo.gl/1uZsu');
+}
+
+.shadow{
+  font-family: sans-serif;
+  font-size:8em;
+  text-align:center;
+  text-shadow: 0 -3px 0 #333,
+    0 6px 8px rgba(0,0,0,.4),
+    0 9px 10px rgba(0,0,0,.15),
+    0 30px 10px rgba(0,0,0,.18),
+    0 15px 10px rgba(0,0,0,.21);
+}
+</style>
+</body>
+</html>
